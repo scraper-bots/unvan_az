@@ -1,0 +1,4 @@
+aiohttp==3.9.1
+asyncio==3.4.3
+beautifulsoup4==4.12.2
+lxml==4.9.3
