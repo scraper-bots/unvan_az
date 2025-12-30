@@ -250,7 +250,7 @@ The marketplace exhibits **high concentration**:
 **Strategic Recommendations**:
 
 **Short-term (Focus on the Core)**:
-- Optimize search, discovery, and user experience for top 7 categories
+- Optimize search, discovery, and user experience for top 4 categories that drive 50% of volume
 - Allocate marketing budget proportionally to category volume
 - Build category-specific features for high-volume segments
 
@@ -310,7 +310,7 @@ Based on the analysis, the following strategic priorities are recommended:
 - Launch category-specific marketing campaigns
 - Build specialized features for targeted categories
 
-**Expected Impact**: Reduce top-7 concentration from 50% to 40% over 12 months
+**Expected Impact**: Reduce top-4 concentration from 50% to 40% over 12 months
 
 ---
 
@@ -345,7 +345,7 @@ Based on the analysis, the following strategic priorities are recommended:
 **Mitigation**: VIP retention program, favorable economics, diversify seller base
 
 ### Risk 2: Category Concentration
-**Risk**: 50% of listings in just 7 categories creates vulnerability
+**Risk**: 50% of listings in just 4 categories creates significant vulnerability
 **Mitigation**: Active diversification strategy, long-tail development
 
 ### Risk 3: Price Pressure
@@ -389,7 +389,7 @@ Examine **Category Economics** and **Market Concentration** sections to identify
 
 **Report Generated**: December 30, 2025
 **Data Period**: September 2025 - December 2025
-**Total Records Analyzed**: 36,747 listings
+**Total Records Analyzed**: 28,297 listings
 
 ---
 
