@@ -234,11 +234,12 @@ Seller activity distribution reveals a **power law dynamic**:
 
 ### What the Data Shows
 
-The marketplace exhibits **moderate concentration**:
+The marketplace exhibits **high concentration**:
 
-- **7 categories** represent **50% of all listings**
-- **Top 15 categories** represent **approximately 65-70%** of marketplace volume
-- Remaining 64 categories represent **30-35%** (long tail)
+- **4 categories** represent **50% of all listings**
+- **12 categories** represent **80% of marketplace volume**
+- **Top 15 categories** represent **approximately 85%** of marketplace volume
+- Remaining 64 categories represent **15%** (long tail)
 
 ![Market Concentration](charts/04_market_concentration.png)
 
