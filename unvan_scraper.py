@@ -345,7 +345,7 @@ async def main():
     if args.reset:
         if Path(UnvanScraper.PROGRESS_FILE).exists():
             Path(UnvanScraper.PROGRESS_FILE).unlink()
-            print("✓ Progress reset")
+            log("✓ Progress reset")
 
     scraper = UnvanScraper(
         city=args.city,
@@ -356,10 +356,10 @@ async def main():
     try:
         await scraper.scrape(max_pages=args.max_pages)
     except KeyboardInterrupt:
-        print("\n\n⚠ Interrupted! Progress saved. Run again to resume.")
+        log("\n\n⚠ Interrupted! Progress saved. Run again to resume.")
         scraper.save_progress()
     except Exception as e:
-        print(f"\n✗ Error: {e}")
+        log(f"\n✗ Error: {e}")
         scraper.save_progress()
         raise
 
