@@ -25,17 +25,15 @@ plt.rcParams['xtick.labelsize'] = 9
 plt.rcParams['ytick.labelsize'] = 9
 
 def load_data():
-    """Load and combine all datasets"""
+    """Load latest scraped dataset only"""
     print("Loading data...")
-    df1 = pd.read_csv('listings.csv')
-    df2 = pd.read_csv('18_08_2023.csv')
-    df = pd.concat([df1, df2], ignore_index=True)
+    df = pd.read_csv('listings.csv')
 
     # Data cleaning
     df['price_clean'] = pd.to_numeric(df['price'], errors='coerce')
     df['date_clean'] = pd.to_datetime(df['date'], format='%d.%m.%Y', errors='coerce')
 
-    print(f"Loaded {len(df)} listings")
+    print(f"Loaded {len(df)} listings from latest scrape")
     return df
 
 def chart_1_market_composition(df):

@@ -6,7 +6,7 @@
 
 ## Overview
 
-This report presents a comprehensive business analysis of the Unvan.az marketplace, covering **36,747 listings** across **79 categories** from September to December 2025. The analysis reveals critical market dynamics, pricing strategies, and growth opportunities that can inform strategic decision-making.
+This report presents a comprehensive business analysis of the Unvan.az marketplace, covering **28,297 listings** across **79 categories** from September to December 2025. The analysis reveals critical market dynamics, pricing strategies, and growth opportunities that can inform strategic decision-making.
 
 ---
 
@@ -14,7 +14,7 @@ This report presents a comprehensive business analysis of the Unvan.az marketpla
 
 | Metric | Value | Insight |
 |--------|-------|---------|
-| **Total Listings** | 36,747 | Substantial marketplace volume indicating healthy activity |
+| **Total Listings** | 28,297 | Substantial marketplace volume indicating healthy activity |
 | **Active Categories** | 79 | Diverse marketplace serving multiple market segments |
 | **Unique Sellers** | 1,857 | Strong seller base with varied participation levels |
 | **Average Listing Price** | 230 AZN | Mid-range pricing indicates balanced market positioning |
@@ -27,17 +27,17 @@ This report presents a comprehensive business analysis of the Unvan.az marketpla
 
 ### What the Data Shows
 
-The marketplace exhibits strong concentration in three dominant categories that together represent **30.6% of all listings**:
+The marketplace exhibits strong concentration in three dominant categories that together represent **39.8% of all listings**:
 
-1. **Mebellər (Furniture)** - 4,712 listings (12.8%)
-2. **İş elanları (Job Postings)** - 4,152 listings (11.3%)
-3. **Digər xidmətlər (Other Services)** - 2,381 listings (6.5%)
+1. **Mebellər (Furniture)** - 4,712 listings (16.7%)
+2. **İş elanları (Job Postings)** - 4,152 listings (14.7%)
+3. **Digər xidmətlər (Other Services)** - 2,381 listings (8.4%)
 
 ![Market Composition](charts/01_market_composition.png)
 
 ### Business Implications
 
-**Market Concentration Risk**: Just 7 categories control 50% of all marketplace activity. This creates both opportunity and vulnerability:
+**Market Concentration Risk**: Just 4 categories control 50% of all marketplace activity. This creates both opportunity and vulnerability:
 - **Opportunity**: Focus optimization efforts on these high-volume categories to maximize impact
 - **Risk**: Over-reliance on few categories makes the platform vulnerable to category-specific downturns
 
