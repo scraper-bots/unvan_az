@@ -18,6 +18,18 @@ import argparse
 import sys
 
 
+def log(msg: str):
+    """Log to both console and file"""
+    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    log_msg = f"[{timestamp}] {msg}"
+    print(msg)
+    try:
+        with open('scraper.log', 'a', encoding='utf-8') as f:
+            f.write(log_msg + '\n')
+    except:
+        pass
+
+
 class UnvanScraper:
     BASE_URL = "https://unvan.az"
     SEARCH_URL = f"{BASE_URL}/search/"
@@ -57,7 +69,7 @@ class UnvanScraper:
                     self.processed = set(data.get('processed', []))
                     self.failed = set(data.get('failed', []))
                     self.page = data.get('page', 0)
-                    print(f"✓ Loaded: {len(self.processed)} processed, page {self.page}")
+                    log(f"✓ Loaded: {len(self.processed)} processed, page {self.page}")
             except:
                 pass
 
@@ -72,7 +84,7 @@ class UnvanScraper:
                     'updated': datetime.now().isoformat()
                 }, f)
         except Exception as e:
-            print(f"✗ Save failed: {e}")
+            log(f"✗ Save failed: {e}")
 
     def save_csv(self, listings: List[Dict]):
         """Save to CSV"""
@@ -88,9 +100,9 @@ class UnvanScraper:
                 for item in listings:
                     row = {h: item.get(h, '') for h in self.CSV_HEADERS}
                     writer.writerow(row)
-            print(f"✓ Saved {len(listings)} listings to CSV")
+            log(f"✓ Saved {len(listings)} listings to CSV")
         except Exception as e:
-            print(f"✗ CSV save failed: {e}")
+            log(f"✗ CSV save failed: {e}")
 
     async def fetch(self, session, url, method='GET', data=None):
         """Fetch with rate limit"""
@@ -103,11 +115,11 @@ class UnvanScraper:
                 ) as resp:
                     if resp.status == 200:
                         return await resp.text()
-                    print(f"✗ HTTP {resp.status}: {url}")
+                    log(f"✗ HTTP {resp.status}: {url}")
             except asyncio.TimeoutError:
-                print(f"✗ Timeout: {url}")
+                log(f"✗ Timeout: {url}")
             except Exception as e:
-                print(f"✗ Error: {e}")
+                log(f"✗ Error: {e}")
         return None
 
     def extract_id(self, url: str) -> Optional[str]:
@@ -145,7 +157,7 @@ class UnvanScraper:
                         'image': urljoin(self.BASE_URL, img['src']) if img else ''
                     })
             except Exception as e:
-                print(f"✗ Parse error: {e}")
+                log(f"✗ Parse error: {e}")
 
         return listings
 
@@ -216,7 +228,7 @@ class UnvanScraper:
                 data['hash'] = telshow.get('data-h', '')
 
         except Exception as e:
-            print(f"✗ Detail parse error: {e}")
+            log(f"✗ Detail parse error: {e}")
 
         return data
 
@@ -228,7 +240,7 @@ class UnvanScraper:
         if lid in self.processed:
             return None
 
-        print(f"→ Scraping {lid}")
+        log(f"→ Scraping {lid}")
 
         html = await self.fetch(session, url)
         if not html:
@@ -252,7 +264,7 @@ class UnvanScraper:
 
     async def scrape_page(self, session, page: int) -> List[Dict]:
         """Scrape one search page"""
-        print(f"\n▶ Page {page}")
+        log(f"\n▶ Page {page}")
 
         data = {
             'query': '',
@@ -263,21 +275,21 @@ class UnvanScraper:
 
         html = await self.fetch(session, self.SEARCH_URL, 'POST', data)
         if not html or '<div class="index prodbig">' not in html:
-            print(f"✗ No listings on page {page}")
+            log(f"✗ No listings on page {page}")
             return []
 
         listings = self.parse_search(html)
-        print(f"✓ Found {len(listings)} listings")
+        log(f"✓ Found {len(listings)} listings")
 
         return listings
 
     async def scrape(self, max_pages: Optional[int] = None):
         """Main scrape loop"""
-        print(f"\n{'='*60}")
-        print(f"Unvan.az Scraper Starting")
-        print(f"Starting from page: {self.page}")
-        print(f"Already processed: {len(self.processed)}")
-        print(f"{'='*60}\n")
+        log(f"\n{'='*60}")
+        log(f"Unvan.az Scraper Starting")
+        log(f"Starting from page: {self.page}")
+        log(f"Already processed: {len(self.processed)}")
+        log(f"{'='*60}\n")
 
         async with aiohttp.ClientSession() as session:
             page = self.page
@@ -285,12 +297,12 @@ class UnvanScraper:
 
             while True:
                 if max_pages and page >= self.page + max_pages:
-                    print(f"\n✓ Reached max pages: {max_pages}")
+                    log(f"\n✓ Reached max pages: {max_pages}")
                     break
 
                 listings = await self.scrape_page(session, page)
                 if not listings:
-                    print("\n✓ No more listings. Done!")
+                    log("\n✓ No more listings. Done!")
                     break
 
                 # Process in batches
@@ -307,17 +319,17 @@ class UnvanScraper:
                     self.page = page
                     self.save_progress()
 
-                    print(f"  ✓ Batch: {len(valid)}/{len(batch)} saved")
+                    log(f"  ✓ Batch: {len(valid)}/{len(batch)} saved")
 
                 page += 1
                 await asyncio.sleep(2)
 
-        print(f"\n{'='*60}")
-        print(f"Scraping Complete!")
-        print(f"Total processed: {len(self.processed)}")
-        print(f"Failed: {len(self.failed)}")
-        print(f"Output: {self.CSV_FILE}")
-        print(f"{'='*60}\n")
+        log(f"\n{'='*60}")
+        log(f"Scraping Complete!")
+        log(f"Total processed: {len(self.processed)}")
+        log(f"Failed: {len(self.failed)}")
+        log(f"Output: {self.CSV_FILE}")
+        log(f"{'='*60}\n")
 
 
 async def main():
